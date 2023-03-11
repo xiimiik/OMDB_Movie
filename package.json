@@ -1,5 +1,5 @@
 {
-  "name": "OMDB_Movie",
+  "name": "omdb_movie",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
