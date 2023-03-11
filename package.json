@@ -1,0 +1,29 @@
+{
+  "name": "OMDB_Movie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^13.2.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@types/node": "18.15.0",
+    "@types/react": "18.0.28",
+    "typescript": "4.9.5",
+    "eslint": "8.28.0",
+    "eslint-config-next": "13.0.5"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.8.0"
+  }
+}
