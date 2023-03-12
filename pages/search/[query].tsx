@@ -1,10 +1,11 @@
 import { GetServerSideProps } from "next";
 import React, { useState } from "react";
-import { Input, Form} from "reactstrap";
-import { getMovie } from "../../api/api";
+import { Input, Form } from "reactstrap";
+import { getMovies } from "../../api";
 import { CardItem } from "../../components/CardItem";
 import { Movie } from "../../types/MovieTypes";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 interface Props {
   movies: Movie[];
@@ -20,7 +21,7 @@ export default function Film({ movies = [] }: Props) {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSearchQuery('');
+    setSearchQuery("");
     router.push(`/search/${searchQuery}`);
   };
 
@@ -37,9 +38,11 @@ export default function Film({ movies = [] }: Props) {
       </Form>
 
       <ul className="movies">
-        {movies.map(({ Title, Year, Poster }, i: number) => (
+        {movies.map(({ Title, Year, Poster, imdbID }, i: number) => (
           <li key={i} className="d-flex justify-content-center">
-            <CardItem title={Title} year={Year} imgUrl={Poster} />
+            <Link href={`/movies/${imdbID}`}>
+              <CardItem title={Title} year={Year} imgUrl={Poster} />
+            </Link>
           </li>
         ))}
       </ul>
@@ -47,11 +50,11 @@ export default function Film({ movies = [] }: Props) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const searchQuery = query.query;
 
   if (typeof searchQuery === "string") {
-    const data = await getMovie(searchQuery);
+    const data = await getMovies(searchQuery);
 
     if (data.Response === "True") {
       return {

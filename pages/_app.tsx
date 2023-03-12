@@ -1,6 +1,7 @@
 import { AppProps } from "next/app";
 import "../styles/global.css"
 import "bootstrap/dist/css/bootstrap.css";
+import 'react-circular-progressbar/dist/styles.css';
 import { SSRProvider } from "react-bootstrap";
 import Layout from "../components/layout";
 
