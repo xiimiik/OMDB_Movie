@@ -1,11 +1,13 @@
 import { useRouter } from "next/router";
 import { Button } from "reactstrap";
+import { CustomHead } from "../components/CustomHead";
 
 export default function NotFound() {
   const router = useRouter();
 
   return (
     <div className="main">
+      <CustomHead title={"Page not found"}/>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="470"

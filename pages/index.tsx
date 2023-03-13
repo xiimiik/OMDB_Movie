@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Input } from "reactstrap";
 import { useRouter } from "next/router";
 import { Form } from "react-bootstrap";
+import { CustomHead } from "../components/CustomHead";
 
 export default function Index() {
   const router = useRouter();
@@ -19,6 +20,7 @@ export default function Index() {
 
   return (
     <div className="h-75 d-flex justify-content-center align-items-center flex-column">
+      <CustomHead title={"Home"} />
       <h1 className="mb-5">Search the most exiting movie...</h1>
       <Form onSubmit={handleSubmit}>
         <Input
@@ -30,7 +32,7 @@ export default function Index() {
         />
       </Form>
 
-      <img src="../static/hand.png" alt="Hand" className="w-25 h-50" />
+      <img src="../static/hand.png" alt="Hand" className="h-50" />
     </div>
   );
 }

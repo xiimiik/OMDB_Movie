@@ -3,12 +3,14 @@ import { useRouter } from "next/router";
 import { Button } from "reactstrap";
 import { getMovie } from "../api";
 import { CardList } from "../components/CardList";
+import { CustomHead } from "../components/CustomHead";
 
 export default function Favorites({ movies }) {
   const router = useRouter();
 
   return (
     <div className="container-xl">
+      <CustomHead title={"Favorites"} />
       <div className="d-flex justify-content-between align-items-center mx-3">
         <h1 className="my-3">Favorites</h1>
         <Button onClick={() => router.back()} className="h-50">

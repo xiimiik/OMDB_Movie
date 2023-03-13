@@ -2,14 +2,19 @@ import { GetServerSideProps } from "next/types";
 import { useRouter } from "next/router";
 import { Button } from "reactstrap";
 import { getMovie } from "../../api";
+import { CustomHead } from "../../components/CustomHead";
 
 export default function Movie({ movie }) {
   const router = useRouter();
 
+  const poster =
+    movie.Poster === "N/A"
+      ? "https://via.placeholder.com/360x270.png?text=no%20preview"
+      : movie.Poster;
+
   const {
     Title,
     Released,
-    Poster,
     Plot,
     Actors,
     Metascore,
@@ -27,6 +32,7 @@ export default function Movie({ movie }) {
 
   return (
     <div className="container-xl">
+      <CustomHead title={`${Title}`} />
       <div className="d-flex justify-content-between align-items-center">
         <div>
           <h1 className="my-3">{Title}</h1>
@@ -38,7 +44,7 @@ export default function Movie({ movie }) {
       </div>
       <div className="d-flex gap-5 mb-3 flex-column flex-md-row align-items-center align-items-md-start">
         <div className="d-flex flex-column align-items-center">
-          <img src={Poster} alt="Movie poster" className="mb-2" />
+          <img src={poster} alt="Movie poster" className="mb-2"/>
           <ul className="d-flex gap-3">
             {genreArr.map((genre) => (
               <li className="border border-2 rounded-pill p-2 fs-5">{genre}</li>

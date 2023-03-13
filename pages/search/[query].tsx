@@ -6,6 +6,7 @@ import { Movie } from "../../types/MovieTypes";
 import { useRouter } from "next/router";
 import { CardList } from "../../components/CardList";
 import { PaginationTemplate } from "../../components/PaginationTemplate";
+import { CustomHead } from "../../components/CustomHead";
 
 interface Props {
   movies: Movie[];
@@ -29,6 +30,7 @@ export default function Film({ movies = [], totalResults }: Props) {
 
   return (
     <div className="d-flex flex-column container-xl">
+      <CustomHead title={"Searching result"} />
       <Form onSubmit={handleSubmit}>
         <Input
           placeholder="Search!"
