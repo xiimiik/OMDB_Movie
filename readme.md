@@ -1,5 +1,5 @@
-# Movie Search Preject
-- [DEMO LINK](-)
+# Movie Search Project
+- [DEMO LINK](https://omdb-movie-nu.vercel.app)
 
 ## Technologies:
 - Next.js (Functional Components, Hooks, Router, Context, LocalStorage)
