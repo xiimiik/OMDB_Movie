@@ -3,7 +3,7 @@ import "../styles/global.css";
 import "../styles/404.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { SSRProvider } from "react-bootstrap";
-import Layout from "../components/layout";
+import { Layout } from "../components/Layout";
 import { UserContextProvider } from "../components/Context";
 
 export default function App({ Component, pageProps }: AppProps) {

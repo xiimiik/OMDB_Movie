@@ -1,6 +1,6 @@
-import Header from "./Header";
+import { Header } from "./Header";
 
-const Layout = ({ children }) => {
+export const Layout = ({ children }) => {
   return (
     <main className="vh-100">
       <Header />
@@ -8,5 +8,3 @@ const Layout = ({ children }) => {
     </main>
   );
 };
-
-export default Layout;

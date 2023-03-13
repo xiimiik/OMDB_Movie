@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Navbar, NavbarBrand } from "reactstrap";
 
-const Header = () => {
+export const Header = () => {
   return (
     <Navbar className="d-flex align-items-center h-10" color="dark" dark>
       <NavbarBrand href="/" className="d-flex align-items-center">
@@ -22,5 +22,3 @@ const Header = () => {
     </Navbar>
   );
 };
-
-export default Header;
