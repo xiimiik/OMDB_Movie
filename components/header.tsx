@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Navbar, NavbarBrand } from "reactstrap";
 
 const Header = () => {
@@ -14,6 +15,10 @@ const Header = () => {
         />
         OMDB Movie
       </NavbarBrand>
+
+      <Link href="/favorites" className="text-light">
+        Favorites
+      </Link>
     </Navbar>
   );
 };

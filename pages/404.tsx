@@ -120,8 +120,8 @@ export default function NotFound() {
           </g>
         </g>
       </svg>
-      <Button onClick={() => router.push('/')} className="h-50">
-          Go back
+      <Button onClick={() => router.push("/")} className="h-50">
+        Go back
       </Button>
     </div>
   );

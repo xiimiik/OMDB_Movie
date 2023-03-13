@@ -4,9 +4,10 @@ import { MovieData, MoviesResponse } from "../types/MovieTypes";
 const API_URL = "https://www.omdbapi.com/?apikey=ac26010c";
 
 export async function getMovies(
-  query: string
+  query: string,
+  page: number
 ): Promise<MoviesResponse | ResponseError> {
-  const response = await fetch(`${API_URL}&s=${query}`);
+  const response = await fetch(`${API_URL}&s=${query}&page=${page}`);
   const data = await response.json();
 
   if (data.Response === "True") {
@@ -28,8 +29,6 @@ export async function getMovie(
 ): Promise<MovieData | ResponseError> {
   const response = await fetch(`${API_URL}&i=${query}&plot=full`);
   const data = await response.json();
-
-  console.log(data)
 
   if (data.Response === "True") {
     return data;

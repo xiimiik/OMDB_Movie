@@ -1,16 +1,19 @@
 import { AppProps } from "next/app";
-import "../styles/global.css"
+import "../styles/global.css";
+import "../styles/404.css";
 import "bootstrap/dist/css/bootstrap.css";
-import 'react-circular-progressbar/dist/styles.css';
 import { SSRProvider } from "react-bootstrap";
 import Layout from "../components/layout";
+import { UserContextProvider } from "../components/Context";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <SSRProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <UserContextProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </UserContextProvider>
     </SSRProvider>
   );
 }

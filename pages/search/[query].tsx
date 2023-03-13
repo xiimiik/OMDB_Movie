@@ -2,18 +2,20 @@ import { GetServerSideProps } from "next";
 import React, { useState } from "react";
 import { Input, Form } from "reactstrap";
 import { getMovies } from "../../api";
-import { CardItem } from "../../components/CardItem";
 import { Movie } from "../../types/MovieTypes";
 import { useRouter } from "next/router";
-import Link from "next/link";
+import { CardList } from "../../components/CardList";
+import { PaginationTemplate } from "../../components/PaginationTemplate";
 
 interface Props {
   movies: Movie[];
+  totalResults: number;
 }
 
-export default function Film({ movies = [] }: Props) {
+export default function Film({ movies = [], totalResults }: Props) {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
@@ -22,7 +24,7 @@ export default function Film({ movies = [] }: Props) {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSearchQuery("");
-    router.push(`/search/${searchQuery}`);
+    router.push(`/search/${searchQuery}?page=${currentPage}`);
   };
 
   return (
@@ -37,29 +39,29 @@ export default function Film({ movies = [] }: Props) {
         />
       </Form>
 
-      <ul className="movies">
-        {movies.map(({ Title, Year, Poster, imdbID }, i: number) => (
-          <li key={i} className="d-flex justify-content-center">
-            <Link href={`/movies/${imdbID}`}>
-              <CardItem title={Title} year={Year} imgUrl={Poster} />
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {movies.length > 0 ? (
+        <>
+          <CardList list={movies} />
+          <PaginationTemplate total={totalResults} />
+        </>
+      ) : (
+        <h1 className="text-center">{`No results found, try again :(`}</h1>
+      )}
     </div>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const searchQuery = query.query;
+  const { query: searchQuery, page } = query;
 
   if (typeof searchQuery === "string") {
-    const data = await getMovies(searchQuery);
+    const data = await getMovies(searchQuery, +page);
 
     if (data.Response === "True") {
       return {
         props: {
           movies: data.movies,
+          totalResults: +data.totalResults,
         },
       };
     }
@@ -68,6 +70,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   return {
     props: {
       movies: [],
+      totalResults: 0,
     },
   };
 };
