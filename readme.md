@@ -6,7 +6,7 @@
 - TypeScript
 - API requests
 - HTML
-- CSS
+- CSS + Bootstrap + Reactstrap
 - NPM
 
 ## Implemented sections and functionality:
@@ -31,3 +31,6 @@ Build a project
 ```python
 npm run build
 ```
+
+## PS
+Vercel відмовлявся деполоїти, тому так багато дивних комітів :( 
